@@ -5,6 +5,9 @@ project(quasirandom LANGUAGES CXX)
 include(CTest)
 
 
+option(QUASIRANDOM_BUILD_EXAMPLES "Build example executables" OFF)
+
+
 if(NOT CMAKE_BUILD_TYPE MATCHES "^(Debug|Release)$")
     message("Unrecognized build type: ${CMAKE_BUILD_TYPE}. Defaulting to Release.")
     set(CMAKE_BUILD_TYPE "Release")
@@ -38,3 +41,7 @@ find_package(Catch2 REQUIRED)
 target_link_libraries(unit_tests PRIVATE Catch2::Catch2WithMain quasirandom)
 
 add_test(NAME unit_tests COMMAND unit_tests)
+
+if(QUASIRANDOM_BUILD_EXAMPLES)
+    add_subdirectory(examples)
+endif()
