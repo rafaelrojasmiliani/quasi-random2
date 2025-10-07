@@ -51,7 +51,7 @@
 
         /* Generate the next point in the sequence. */
         [[nodiscard]]
-        constexpr result_type operator()() noexcept;
+        constexpr const result_type& operator()() noexcept;
 
         /* Return the n-th point of the sequence. Doesn't affect the state of the generator. */
         [[nodiscard]]
@@ -97,7 +97,7 @@
 
         /* Generate the next point in the sequence. */
         [[nodiscard]]
-        constexpr result_type operator()();
+        constexpr const result_type& operator()();
 
         /* Return the n-th point of the sequence. Doesn't affect the state of the generator. */
         [[nodiscard]]
@@ -168,7 +168,7 @@ namespace quasirand
     }
 
     template<std::size_t Dim, std::floating_point RealType>
-    constexpr auto QuasiRandom<Dim, RealType>::operator()() noexcept -> result_type
+    constexpr auto QuasiRandom<Dim, RealType>::operator()() noexcept -> const result_type&
     {
         for (size_type i = 0; i < point_.size(); i++)
         {
@@ -239,7 +239,7 @@ namespace quasirand
     }
 
     template<std::floating_point RealType>
-    constexpr auto QuasiRandom<DYNAMIC, RealType>::operator()() -> result_type
+    constexpr auto QuasiRandom<DYNAMIC, RealType>::operator()() -> const result_type&
     {
         for (size_type i = 0; i < point_.size(); i++)
         {
