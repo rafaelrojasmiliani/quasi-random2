@@ -63,3 +63,13 @@ int main()
 |   ![](plots/3d_50.png)	|   ![](plots/3d_100.png)	|
 |           ---	            |           ---	            |
 |   ![](plots/3d_500.png)	|   ![](plots/3d_2000.png)	|
+
+## Migrating from C++20 to C++17
+
+The original implementation relied on a small number of C++20-only language features:
+
+- `std::floating_point` from `<concepts>` to constrain template parameters.
+
+In the C++17-compatible version these facilities are replaced with:
+
+- `static_assert` checks together with `<type_traits>` to validate that template arguments are floating-point types.
