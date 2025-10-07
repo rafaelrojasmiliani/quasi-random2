@@ -1,0 +1,3 @@
+add_executable(qmc_cosine_integration qmc_cosine_integration.cpp)
+target_include_directories(qmc_cosine_integration PRIVATE "${CMAKE_SOURCE_DIR}/src")
+target_link_libraries(qmc_cosine_integration PRIVATE quasirandom)
