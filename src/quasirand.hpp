@@ -43,6 +43,8 @@ public:
   [[nodiscard]]
   constexpr result_type operator()() noexcept;
 
+  void operator()(result_type &result) noexcept;
+
   /* Return the n-th point of the sequence. Doesn't affect the state of the
    * generator. */
   [[nodiscard]]
@@ -88,6 +90,8 @@ public:
   /* Generate the next point in the sequence. */
   [[nodiscard]]
   constexpr result_type operator()();
+
+  void operator()(result_type &result);
 
   /* Return the n-th point of the sequence. Doesn't affect the state of the
    * generator. */
@@ -165,6 +169,15 @@ constexpr auto QuasiRandom<Dim, RealType>::operator()() noexcept
 }
 
 template <std::size_t Dim, typename RealType>
+void QuasiRandom<Dim, RealType>::operator()(result_type &result) noexcept {
+  for (size_type i = 0; i < point_.size(); i++) {
+    point_[i] += alpha_[i];
+    point_[i] -= size_type(point_[i]);
+    result[i] = point_[i];
+  }
+}
+
+template <std::size_t Dim, typename RealType>
 constexpr auto
 QuasiRandom<Dim, RealType>::operator()(size_type n) const noexcept
     -> result_type {
@@ -231,6 +244,14 @@ constexpr auto QuasiRandom<DYNAMIC, RealType>::operator()() -> result_type {
   return point_;
 }
 
+template <typename RealType>
+void QuasiRandom<DYNAMIC, RealType>::operator()(result_type &result) {
+  for (size_type i = 0; i < point_.size(); i++) {
+    point_[i] += alpha_[i];
+    point_[i] -= size_type(point_[i]);
+    result[i] = point_[i];
+  }
+}
 template <typename RealType>
 constexpr auto QuasiRandom<DYNAMIC, RealType>::operator()(size_type n) const
     -> result_type {

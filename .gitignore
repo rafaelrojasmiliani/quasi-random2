@@ -6,3 +6,9 @@ out/*
 plot.*
 points.txt
 TODO.txt
+.*.sw?
+GPATH
+GRTAGS
+GTAGS
+cmake-Ubuntu_22.04.5_LTS-*/
+tags
