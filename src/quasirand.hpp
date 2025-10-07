@@ -1,31 +1,39 @@
-/* Copyright (c) 2022 Krisztián Rugási. Subject to the MIT license. */
+#include <type_traits>
 
-#ifndef QUASIRAND_HPP
-#define QUASIRAND_HPP
+    template<typename RealType>
+    template<std::size_t Dim, typename RealType = double>
 
-#include <array>
-#include <vector>
-#include <concepts>
-#include <cstddef>
+        static_assert(std::is_floating_point<RealType>::value,
+                      "RealType must be a floating point type.");
 
-namespace quasirand::detail
-{
-    /* Approximation of the generalized golden ratio in dim dimensions. */
-    template<std::floating_point RealType>
-    RealType phi(std::size_t dim, std::size_t n = 30) noexcept;
+    template<typename RealType>
+    template<typename RealType>
+        static_assert(std::is_floating_point<RealType>::value,
+                      "RealType must be a floating point type.");
 
-} // namespace quasirand::detail
+    template<typename RealType>
+    template<std::size_t Dim, typename RealType>
 
-namespace quasirand
-{
-    /* Special dimension value for the dynamically sized generators. */
-    inline constexpr std::size_t DYNAMIC = std::size_t(-1);
+    template<std::size_t Dim, typename RealType>
+    template<std::size_t Dim, typename RealType>
+    template<std::size_t Dim, typename RealType>
+    template<std::size_t Dim, typename RealType>
+    template<std::size_t Dim, typename RealType>
 
-    /*
-    * Quasi-random number generator based on: http://extremelearning.com.au/unreasonable-effectiveness-of-quasirandom-sequences/
-    * Generates points in a unit hypercube in Dim dimensions.
-    * 
-    * The dimension of the generator can be chosen at runtime if the Dim argument is set to DYNAMIC.
+    template<std::size_t Dim, typename RealType>
+
+    template<std::size_t Dim, typename RealType>
+    template<typename RealType>
+    template<typename RealType>
+    template<typename RealType>
+
+    template<typename RealType>
+    template<typename RealType>
+    template<typename RealType>
+    template<typename RealType>
+        static_assert(std::is_floating_point<RealType>::value,
+                      "RealType must be a floating point type.");
+#endif
     */
     template<std::size_t Dim, std::floating_point RealType = double>
     class QuasiRandom
